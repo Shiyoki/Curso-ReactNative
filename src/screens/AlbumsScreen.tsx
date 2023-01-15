@@ -1,10 +1,25 @@
-import React from 'react'
-import { Text, View } from 'react-native'
+import React, { useContext } from 'react'
+import { Button, Text, View } from 'react-native'
+import { AuthContext } from '../context/AuthContext';
+import { styles } from '../themes/appTheme'
 
 export const AlbumsScreen = () => {
+
+  const {logout, authState: { isLoggedIn }} = useContext(AuthContext);
+
   return (
-    <View>
-        <Text>Albums</Text>
+    <View style={styles.globalMargin}>
+        <Text style={styles.title}>Albums</Text>
+
+        {
+          isLoggedIn && (
+            <Button 
+            title='Logout'
+            onPress={logout}
+          />  
+          )
+        }
+       
     </View>
   )
 }
